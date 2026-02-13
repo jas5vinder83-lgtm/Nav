@@ -7,46 +7,50 @@
 <style>
 body{
  margin:0;
- background:#f2f2f2;
+ background:linear-gradient(180deg,#f7f7f7,#eaeaea);
  font-family: "Times New Roman", serif;
  height:100vh;
  display:flex;
  justify-content:center;
  align-items:center;
+ overflow:hidden;
 }
 
 .card{
  background:#ffffff;
- padding:60px 50px;
- border-radius:18px;
- box-shadow:0 20px 60px rgba(0,0,0,0.15);
+ padding:70px 60px;
+ border-radius:22px;
+ box-shadow:0 30px 80px rgba(0,0,0,0.18);
  text-align:center;
- max-width:480px;
- animation:fade 1.2s ease;
+ max-width:500px;
+ animation:fade 1.5s ease;
 }
 
 img{
- width:200px;
- border-radius:12px;
- margin-bottom:30px;
+ width:230px;
+ border-radius:16px;
+ margin-bottom:35px;
 }
 
 h1{
- font-size:42px;
- font-weight:500;
+ font-size:46px;
  margin:10px 0;
+ letter-spacing:1px;
 }
 
 p{
  font-size:18px;
- color:#666;
- letter-spacing:1px;
+ color:#777;
+}
+
+.buttons{
+ margin-top:40px;
 }
 
 button{
  font-size:18px;
- padding:14px 34px;
- margin:20px;
+ padding:16px 40px;
+ margin:18px;
  border-radius:40px;
  border:none;
  cursor:pointer;
@@ -56,6 +60,7 @@ button{
 #yes{
  background:#111;
  color:#fff;
+ box-shadow:0 10px 30px rgba(0,0,0,0.25);
 }
 
 #no{
@@ -64,7 +69,7 @@ button{
 }
 
 @keyframes fade{
- from{opacity:0; transform:translateY(20px);}
+ from{opacity:0; transform:translateY(40px);}
  to{opacity:1; transform:translateY(0);}
 }
 </style>
@@ -72,15 +77,17 @@ button{
 
 <body>
 
-<div class="card">
+<div class="card" id="card">
 <img src="https://i.postimg.cc/nzmfkTPW/85640B4F-885A-4C50-99FB-C9A37828B5C9-20590-00000654FFBE884F.jpg">
 
 <p>Nav</p>
 <h1>Be my Valentine.</h1>
-<p>Choose carefully.</p>
+<p>Don’t overthink it.</p>
 
+<div class="buttons">
 <button id="yes">Yes</button>
 <button id="no">No</button>
+</div>
 </div>
 
 <audio id="audio">
@@ -99,7 +106,7 @@ function moveNo(){
  let y=Math.random()*window.innerHeight*0.7;
  no.style.left=x+"px";
  no.style.top=y+"px";
- scale+=0.2;
+ scale+=0.25;
  yes.style.transform="scale("+scale+")";
 }
 
@@ -107,13 +114,12 @@ no.addEventListener("mouseover",moveNo);
 no.addEventListener("click",moveNo);
 
 yes.addEventListener("click",()=>{
- document.body.innerHTML=
- `<div style="display:flex;justify-content:center;align-items:center;height:100vh;font-family:Times New Roman,serif;">
- <div style="text-align:center;">
- <h1>Good.</h1>
- <p style="font-size:20px;">You're my Valentine now, Nav.</p>
- </div>
- </div>`;
+ document.getElementById("card").innerHTML =
+ `
+ <h1 style="font-size:52px;">Good.</h1>
+ <p style="font-size:20px;margin-top:10px;">You're my Valentine now, Nav.</p>
+ <p style="color:#aaa;margin-top:6px;">I already knew your answer.</p>
+ `;
  audio.play();
 });
 </script>
