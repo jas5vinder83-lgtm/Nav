@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Nav</title>
+<style>
+body{margin:0;background:black;color:white;font-family:Georgia,serif;height:100vh;display:flex;justify-content:center;align-items:center;text-align:center}
+img{width:260px;border-radius:14px;margin-bottom:25px;opacity:0;transform:scale(.9);transition:1.5s}
+button{font-size:22px;padding:16px 40px;margin:15px;border-radius:50px;border:none}
+#yes{background:#8b0000;color:white}
+#no{background:white;color:black;position:absolute}
+</style>
+</head>
+<body>
+
+<div>
+<img id="photo" src="https://i.postimg.cc/nzmfkTPW/85640B4F-885A-4C50-99FB-C9A37828B5C9-20590-00000654FFBE884F.jpg">
+<h1>Nav.</h1>
+<p id="line" style="opacity:0">Be my Valentine.</p>
+
+<div id="buttons" style="opacity:0">
+<button id="yes">Yes</button>
+<button id="no">No</button>
+</div>
+</div>
+
+<audio id="audio" src="https://media.vocaroo.com/mp3/18ZwxD3lVxiz"></audio>
+
+<script>
+let photo=document.getElementById("photo");
+let line=document.getElementById("line");
+let buttons=document.getElementById("buttons");
+
+setTimeout(()=>{photo.style.opacity=1;photo.style.transform="scale(1)"},600);
+setTimeout(()=>{line.style.opacity=1},2000);
+setTimeout(()=>{buttons.style.opacity=1},3500);
+
+let yes=document.getElementById("yes");
+let no=document.getElementById("no");
+let scale=1;
+
+function moveNo(){
+ let x=Math.random()*window.innerWidth*0.8;
+ let y=Math.random()*window.innerHeight*0.8;
+ no.style.left=x+"px";
+ no.style.top=y+"px";
+ scale+=0.2;
+ yes.style.transform="scale("+scale+")";
+}
+
+no.addEventListener("mouseover",moveNo);
+no.addEventListener("click",moveNo);
+
+yes.addEventListener("click",()=>{
+ document.body.innerHTML="<h1>You're my Valentine now, Nav.</h1>";
+ document.getElementById("audio").play();
+});
+</script>
+
+</body>
+</html>
