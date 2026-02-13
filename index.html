@@ -2,68 +2,67 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Nav</title>
+<title>For Nav</title>
 
 <style>
 body{
  margin:0;
- background:#000;
- color:white;
- font-family:Georgia,serif;
+ background:#f5f5f5;
+ font-family: 'Georgia', serif;
  height:100vh;
  display:flex;
  justify-content:center;
  align-items:center;
  text-align:center;
- overflow:hidden;
 }
 
 .container{
- max-width:900px;
- animation:fade 2s ease;
+ background:white;
+ padding:40px;
+ border-radius:20px;
+ box-shadow:0 10px 40px rgba(0,0,0,0.1);
+ max-width:500px;
+ animation:fade 1.5s ease;
 }
 
 img{
- width:260px;
- border-radius:14px;
- margin-bottom:30px;
- box-shadow:0 0 40px rgba(255,255,255,0.2);
+ width:220px;
+ border-radius:12px;
+ margin-bottom:20px;
 }
 
 h1{
- font-size:56px;
- letter-spacing:1px;
+ font-size:40px;
+ margin:10px 0;
 }
 
 p{
- font-size:22px;
- opacity:0.8;
+ font-size:18px;
+ color:#444;
 }
 
 button{
- font-size:22px;
- padding:16px 48px;
- margin:20px;
- border-radius:50px;
+ font-size:18px;
+ padding:14px 32px;
+ margin:15px;
+ border-radius:40px;
  border:none;
  cursor:pointer;
  transition:0.3s;
 }
 
 #yes{
- background:#8b0000;
+ background:#d62828;
  color:white;
- box-shadow:0 0 40px rgba(255,0,0,0.6);
 }
 
 #no{
- background:white;
- color:black;
+ background:#ddd;
  position:absolute;
 }
 
 @keyframes fade{
- from{opacity:0; transform:translateY(30px);}
+ from{opacity:0; transform:translateY(20px);}
  to{opacity:1; transform:translateY(0);}
 }
 </style>
@@ -74,48 +73,5 @@ button{
 <div class="container">
 <img src="https://i.postimg.cc/nzmfkTPW/85640B4F-885A-4C50-99FB-C9A37828B5C9-20590-00000654FFBE884F.jpg">
 
-<h1>Nav.</h1>
-<p>I have a question.</p>
-<h1>Be my Valentine.</h1>
-
-<div>
-<button id="yes">Yes</button>
-<button id="no">No</button>
-</div>
-</div>
-
-<audio id="audio">
-<source src="https://media.vocaroo.com/mp3/18ZwxD3lVxiz" type="audio/mpeg">
-</audio>
-
-<script>
-let yes=document.getElementById("yes");
-let no=document.getElementById("no");
-let audio=document.getElementById("audio");
-
-let scale=1;
-
-function moveNo(){
- let x=Math.random()*window.innerWidth*0.8;
- let y=Math.random()*window.innerHeight*0.8;
- no.style.left=x+"px";
- no.style.top=y+"px";
- scale+=0.2;
- yes.style.transform="scale("+scale+")";
-}
-
-no.addEventListener("mouseover",moveNo);
-no.addEventListener("click",moveNo);
-
-yes.addEventListener("click",()=>{
- document.body.innerHTML=
- `<div style="text-align:center;">
- <h1>Good.</h1>
- <p>You're my Valentine now, Nav.</p>
- </div>`;
- audio.play();
-});
-</script>
-
-</body>
-</html>
+<h1>Nav</h1>
+<p>I have one question.</p
