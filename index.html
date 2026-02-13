@@ -2,13 +2,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Nav</title>
+<title>For Nav</title>
 
 <style>
 body{
  margin:0;
- background:linear-gradient(180deg,#f7f7f7,#eaeaea);
- font-family: "Times New Roman", serif;
+ background:linear-gradient(#f8f8f8,#eaeaea);
+ font-family:"Times New Roman",serif;
  height:100vh;
  display:flex;
  justify-content:center;
@@ -17,40 +17,35 @@ body{
 }
 
 .card{
- background:#ffffff;
+ background:white;
  padding:70px 60px;
- border-radius:22px;
- box-shadow:0 30px 80px rgba(0,0,0,0.18);
+ border-radius:26px;
+ box-shadow:0 40px 120px rgba(0,0,0,0.18);
  text-align:center;
- max-width:500px;
- animation:fade 1.5s ease;
+ max-width:520px;
+ animation:fade 1.6s ease;
 }
 
 img{
- width:230px;
- border-radius:16px;
- margin-bottom:35px;
+ width:240px;
+ border-radius:18px;
+ margin-bottom:40px;
 }
 
 h1{
- font-size:46px;
+ font-size:44px;
  margin:10px 0;
- letter-spacing:1px;
 }
 
 p{
- font-size:18px;
- color:#777;
-}
-
-.buttons{
- margin-top:40px;
+ font-size:20px;
+ color:#666;
 }
 
 button{
  font-size:18px;
- padding:16px 40px;
- margin:18px;
+ padding:16px 44px;
+ margin:20px;
  border-radius:40px;
  border:none;
  cursor:pointer;
@@ -59,12 +54,12 @@ button{
 
 #yes{
  background:#111;
- color:#fff;
- box-shadow:0 10px 30px rgba(0,0,0,0.25);
+ color:white;
+ box-shadow:0 15px 40px rgba(0,0,0,0.3);
 }
 
 #no{
- background:#e5e5e5;
+ background:#ddd;
  position:absolute;
 }
 
@@ -79,49 +74,86 @@ button{
 
 <div class="card" id="card">
 <img src="https://i.postimg.cc/nzmfkTPW/85640B4F-885A-4C50-99FB-C9A37828B5C9-20590-00000654FFBE884F.jpg">
-
-<p>Nav</p>
-<h1>Be my Valentine.</h1>
-<p>Don’t overthink it.</p>
-
-<div class="buttons">
-<button id="yes">Yes</button>
-<button id="no">No</button>
-</div>
+<h1 id="text">Nav.</h1>
+<p id="sub">Stay here.</p>
 </div>
 
-<audio id="audio">
+<!-- background music -->
+<audio id="bg" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
+</audio>
+
+<!-- your voice -->
+<audio id="voice">
 <source src="https://media.vocaroo.com/mp3/18ZwxD3lVxiz" type="audio/mpeg">
 </audio>
 
 <script>
-let yes=document.getElementById("yes");
-let no=document.getElementById("no");
-let audio=document.getElementById("audio");
+let card=document.getElementById("card");
+let bg=document.getElementById("bg");
+let voice=document.getElementById("voice");
 
-let scale=1;
+bg.volume=0.25;
 
-function moveNo(){
- let x=Math.random()*window.innerWidth*0.7;
- let y=Math.random()*window.innerHeight*0.7;
- no.style.left=x+"px";
- no.style.top=y+"px";
- scale+=0.25;
- yes.style.transform="scale("+scale+")";
+let lines=[
+ "Look at me.",
+ "Don’t skip this.",
+ "You knew this moment was coming.",
+ "Answer honestly.",
+ "Last question."
+];
+
+let i=0;
+
+function nextLine(){
+ if(i<lines.length){
+  document.getElementById("sub").innerText=lines[i];
+  i++;
+  setTimeout(nextLine,2200);
+ }else{
+  showQuestion();
+ }
 }
 
-no.addEventListener("mouseover",moveNo);
-no.addEventListener("click",moveNo);
+setTimeout(nextLine,1500);
 
-yes.addEventListener("click",()=>{
- document.getElementById("card").innerHTML =
- `
- <h1 style="font-size:52px;">Good.</h1>
- <p style="font-size:20px;margin-top:10px;">You're my Valentine now, Nav.</p>
- <p style="color:#aaa;margin-top:6px;">I already knew your answer.</p>
+function showQuestion(){
+ card.innerHTML=`
+ <h1>Be my Valentine.</h1>
+ <p>Choose wisely.</p>
+ <div>
+ <button id="yes">Yes</button>
+ <button id="no">No</button>
+ </div>
  `;
- audio.play();
-});
+
+ let yes=document.getElementById("yes");
+ let no=document.getElementById("no");
+
+ let scale=1;
+
+ function moveNo(){
+  let x=Math.random()*window.innerWidth*0.7;
+  let y=Math.random()*window.innerHeight*0.7;
+  no.style.left=x+"px";
+  no.style.top=y+"px";
+  scale+=0.3;
+  yes.style.transform="scale("+scale+")";
+ }
+
+ no.addEventListener("mouseover",moveNo);
+ no.addEventListener("click",moveNo);
+
+ yes.addEventListener("click",()=>{
+  bg.play();
+  card.innerHTML=`
+  <h1>Good.</h1>
+  <p>You were always going to say yes.</p>
+  <p style="color:#aaa;">You're my Valentine now, Nav.</p>
+  `;
+  voice.play();
+ });
+}
 </script>
 
 </body>
